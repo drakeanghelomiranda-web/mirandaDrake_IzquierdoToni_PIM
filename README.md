@@ -1,2 +1,2 @@
 # mirandaDrake_IzquierdoToni_PIM
-Repositorio para el prouyecto intermodular,
+Repositorio para el proyecto intermodular,
