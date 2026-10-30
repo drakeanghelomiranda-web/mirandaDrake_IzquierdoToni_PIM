@@ -88,19 +88,11 @@ Encajamos como **Software Factory / Desarrollo a medida** al requerir una arquit
 
 ---
 
-## 8. Conclusiones y fuentes
+## 8. Conclusione
 
 ### Conclusión final
 Para sacar adelante el proyecto GoRide de forma ordenada, hemos acordado la arquitectura clásica Cliente-Servidor en Java Spring Boot y MySQL, dando prioridad absoluta al MVP (catálogo con filtros por carnet, calculador dinámico y Spring Security) y organizándonos internamente como una Software Factory. En definitiva, GoRide sirve para transformar la experiencia de alquiler de vehículos, resolviendo de forma directa la opacidad en los precios y la falta de búsquedas adaptadas a los requisitos legales de los conductores.
 
-### Fuentes consultadas:
-* **Modelos de empresa TIC y desarrollo web:** https://www.eoi.es
-* **Documentación oficial de Java Spring Boot:** https://spring.io/projects/spring-boot
-* **Documentación oficial de Spring Security:** https://spring.io/projects/spring-security
-* **Programa Kit Digital (Acelera Pyme):** https://www.acelerapyme.gob.es/kit-digital
-* **Financiación ENISA Jóvenes Emprendedores:** https://www.enisa.es
-* **Agencia Española de Protección de Datos (RGPD):** https://www.aepd.es
-* **Convenio Colectivo del Sector TIC (BOE):** https://www.boe.es/diario_boe/txt.php?id=BOE-A-2023-17238
 
 ---
 
