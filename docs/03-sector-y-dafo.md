@@ -32,3 +32,6 @@ La empresa que desarrolla el producto encaja como una **Software Factory / Desar
 * **Amenazas (Externas):**
   1. Mucha competencia con compañías millonarias de vehículos y de alquiler.
   2. Cambios o restricciones en la normativa sobre protección de datos (RGPD).
+
+### Conclusión Estratégica del DAFO
+Se justifica el MVP centrado en el catálogo interactivo y eficaz, el motor de precios dinámico y la gestión de perfiles. Esto permite aprovechar nuestros servicios técnicos en Java Spring Boot y responder a la demanda de alquileres, mitigando a su vez las amenazas de protección de datos (RGPD) mediante un control riguroso de perfiles y posponiendo el desarrollo móvil y las pasarelas de pago para garantizar la viabilidad técnica del proyecto en los plazos fijados.
