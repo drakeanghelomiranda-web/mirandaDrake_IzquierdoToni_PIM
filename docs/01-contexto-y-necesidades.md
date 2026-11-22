@@ -1,41 +1,58 @@
 # 1. Contexto del Proyecto y Análisis de Necesidades
 
-## 1. Contexto del Proyecto y Ámbito
-El proyecto consiste en una plataforma web de alquiler de vehículos (turismos, furgonetas, motos y vehículos especiales) con parte de servidor web y base de datos.
-* **Empresa cliente:** GoRide, una empresa SL (Sociedad Limitada) de rent a car ficticia que usará la plataforma para mostrar su flota de vehículos y gestionar las reservas.
+> Última revisión: 22/11/2026. Fuente de verdad para problema, necesidades y oportunidades. El detalle de alcance está en `02-mvp-y-alcance.md`; las decisiones y pendientes, en `decisiones-y-pendientes.md`.
 
-## 2. Problemas Identificados
-1. **Poco catálogo de vehículos y falta de filtros clave:** La mayoría de las webs de alquiler de vehículos suelen mostrar una lista básica donde el cliente tiene que revisar vehículo por vehículo para saber todos sus detalles y si se adapta a lo que busca.
-2. **Falta de seguridad en las transacciones en línea:** La falta de sistemas de pago seguros y validados genera desconfianza a los clientes a la hora de confirmar y pagar su reserva del vehículo por internet.
+## 1. Proyecto
 
-## 3. Personas y Colectivos Afectados
-* Viajeros, grupos de amigos y familias que necesitan un vehículo para un viaje.
-* Empresas de catering y de organización de eventos que necesitan furgonetas o vehículos especiales.
-* Aficionados al motor que quieren probar vehículos de distintas gamas.
-* La propia empresa de alquiler (GoRide), que pierde reservas por la desconfianza del usuario y atiende consultas evitables.
+GoRide es una aplicación web con servidor y base de datos para el alquiler de vehículos (turismos, furgonetas, motos y vehículos especiales).
 
-## 4. Evolución respecto a la UT0
-Mantenemos la propuesta original de la plataforma GoRide presentada en la UT0. El cambio principal en esta UT1 es la concreción técnica y la justificación de las necesidades. Aunque en la UT0 identificamos la falta de seguridad en transacciones en línea como un problema, para garantizar la viabilidad del MVP en los plazos del ciclo dejamos la pasarela de pago para el roadmap futuro y nos centramos exclusivamente en tres capacidades que podemos plantear en equipo (Drake y Toni):
-* **Catálogo interactivo con filtrado avanzado:** Búsqueda personalizada según el tipo de vehículo, combustible, número de plazas y permiso de conducir necesario.
-* **Motor de cálculo de presupuesto dinámico y reserva:** Algoritmo de tarifas que calcula el precio estimado en tiempo real según los días seleccionados y la tasa de kilometraje previsto.
-* **Gestión de perfiles de usuario y registro de documentación:** Sistema de autenticación y registro seguro (Spring Security) para almacenar los datos del usuario y vincular la documentación del carnet a sus reservas.
+- **Cliente:** GoRide, empresa de *rent a car* ficticia, que usa la plataforma para mostrar su flota y gestionar reservas.
+- **Empresa desarrolladora:** el equipo, organizado como software factory (desarrollo a medida). No es el cliente.
 
-## 5. Tabla de Necesidades
-* **Necesidad 1 (Importancia Alta):** Conocer el coste total estimado de forma transparente antes de reservar (días, kilómetros, extras).
-  * *Afectados:* Viajeros, familias, eventos.
-  * *Evidencia:* UT0 (Falta de cálculo transparente).
-* **Necesidad 2 (Importancia Alta):** Encontrar un vehículo que encaje con las necesidades y requisitos legales (carnet) sin revisarlos uno a uno.
-  * *Afectados:* Todos los usuarios.
-  * *Evidencia:* UT0 (Poco catálogo y falta de filtros clave).
-* **Necesidad 3 (Importancia Media/Alta):** No repetir datos y documentación en cada reserva para agilizar el proceso.
-  * *Afectados:* Usuarios y empresas recurrentes.
-  * *Evidencia:* Estudio del mercado y valoración de posible fallo potencial.
-* **Necesidad 4 (Importancia Media - a aplicar al final):** Aplicar una plataforma de pagos que sea de confianza y gestionar los datos del cliente de forma segura.
-  * *Afectados:* Todos los usuarios.
-  * *Evidencia:* UT0 (Falta de seguridad en transacciones); RGPD.
+## 2. Problemas observados
 
-## 6. Oportunidades Identificadas
-* **Transparencia Tarifaria Dinámica (Prioridad Alta):** Genera confianza inmediata al eliminar sorpresas de precio en el mostrador (Abarca Necesidad 1).
-* **Búsqueda Guiada por Requisitos Legales (Prioridad Alta):** Aporta valor al evitar que un usuario alquile un vehículo que legalmente no puede conducir, ej. motos A2 vs A (Abarca Necesidad 2).
-* **Fidelización y Gestión de Perfil Único (Prioridad Media):** Agiliza reservas recurrentes al no requerir reintroducción de datos (Abarca Necesidades 3 y 4).
-* **Asistente de búsqueda rápida / IA / Filtros avanzados (Prioridad Baja/Media):** Agiliza búsquedas complejas para el usuario (Abarca Necesidad 2).
+1. El precio total no se conoce hasta el final de la reserva.
+2. El usuario puede elegir un vehículo que su permiso no le autoriza a conducir.
+3. Sin control de disponibilidad, un vehículo puede reservarse dos veces para las mismas fechas.
+4. El cliente repite sus datos y los del carnet en cada reserva.
+5. Se guardan datos personales y del carnet, y el usuario desconfía de cómo se tratan.
+
+## 3. Personas afectadas
+
+- Viajeros, grupos de amigos y familias.
+- Empresas de catering y organización de eventos (furgonetas, vehículos especiales).
+- Aficionados al motor que quieren probar vehículos de distintas gamas.
+- GoRide, que pierde reservas por desconfianza y atiende consultas evitables.
+
+## 4. Necesidades
+
+| Nº | Necesidad | Afectados | Origen / evidencia | Estado | Importancia |
+|---|---|---|---|---|---|
+| N1 | Conocer el coste total estimado antes de reservar | Viajeros, familias, empresas de eventos | Comparativa de 3 webs de alquiler: [web 1, URL, fecha, observación] · [web 2…] · [web 3…] | Observado | Alta |
+| N2 | Saber qué vehículos puede conducir con su permiso | Todos los usuarios | Clases de permiso del Reglamento General de Conductores (RD 818/2009, art. 4 y ss.) [enlace BOE, fecha] | Fuente normativa | Alta |
+| N3 | Evitar que un vehículo se reserve dos veces en fechas solapadas | GoRide y usuarios | Riesgo de sobreventa en sistemas sin control de disponibilidad | **Hipótesis** (se contrasta con la prueba de solape) | Alta |
+| N4 | Reutilizar los datos del cliente sin repetirlos en cada reserva | Clientes recurrentes y empresas | Encuesta breve [nº de respuestas, fecha] | **Hipótesis** | Media |
+| N5 | Tratar los datos personales y del carnet con seguridad y legalidad | Usuarios y GoRide | RGPD (arts. 5 y 32), LOPDGDD 3/2018 [enlaces]; desconfianza detectada en UT0 | Fuente normativa | Alta |
+
+**Problema, necesidad y solución.** Problema: «no sé el precio final». Necesidad: N1. Solución: motor de presupuesto en la reserva.
+
+## 5. Oportunidades
+
+| Oportunidad | Necesidad | Valor | Prioridad | Decisión que origina |
+|---|---|---|---|---|
+| O1. Transparencia tarifaria | N1 | Elimina sorpresas y genera confianza | Alta | Mostrar el total antes de confirmar |
+| O2. Búsqueda guiada por requisitos legales | N2 | Evita elegir vehículos no conducibles | Alta | Filtro por permiso en el catálogo |
+| O3. Reserva fiable sin dobles reservas | N3 | Reduce errores y reservas perdidas | Alta | Comprobar disponibilidad antes de confirmar |
+| O4. Perfil único y tratamiento seguro de datos | N4, N5 | Agiliza reservas recurrentes y reduce riesgo legal | Media | Cuenta con datos mínimos y contraseñas con hash |
+
+## 6. Conclusión estratégica (resumen del DAFO)
+
+No se compite en flota ni en funciones, sino en dos diferenciales: **filtrado por permiso** y **precio total transparente**. El equipo pequeño, el plazo limitado y las obligaciones del RGPD justifican un MVP reducido, sin pagos ni app móvil, y con datos mínimos del carnet. El DAFO completo está en `03-sector-y-dafo.md`.
+
+## 7. Cambios respecto a UT0 y a la primera versión de este fichero
+
+- Los **pagos** dejan de ser una necesidad del MVP. La pasarela pasa al roadmap (el proyecto no admite integraciones externas obligatorias).
+- Se añade el **solape de reservas** (N3) y los **datos seguros** (N5), antes sin cubrir.
+- N3 y N4 se marcan como **hipótesis**.
+- Se elimina el término «extras» del coste total (ver `decisiones-y-pendientes.md`, D2).
+- El asistente de búsqueda pasa al roadmap.
